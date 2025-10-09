@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+:root{
+    --mdc-theme-primary: #3f51b5;
+    --mdc-theme-secondary: #e91e63;
+    --mdc-theme-error: #f44336;
+}
+
+mat-toolbar mat-icon {
+    color:white;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+mat-sidenav-container {
+    height: 100vh; /*ocupa toda la ventana*/
+}
+
+mat-sidenav {
+    height: 100%; /*ocupa toda la altura del contenedor*/
+}
+
+mat-sidenav app-sidenav{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/*Asegura que mat-icon esté centrado verticalmente y con margen a la derecha*/
+mat-list-item mat-icon {
+    margin-right: 16px;
+    vertical-align: middle;
+    font-size: 24px;
+}
+
+/*Opcional: alinear texto verticalmente con icono*/
+mat-list-item .menu-text {
+    display: inline-block;
+    line-height: 24px;
+    vertical-align: middle;
+}
