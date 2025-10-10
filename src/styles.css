@@ -42,3 +42,27 @@ mat-list-item .menu-text {
     line-height: 24px;
     vertical-align: middle;
 }
+
+/*Contenedor principal: centra vertical y horizontal*/
+.login-container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+}
+
+/* Card del login */
+.login-card{
+    width: 100%;
+    max-width: 400px;
+    /*máximo tamaño*/
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.full-width{
+    width: 100%;
+}
