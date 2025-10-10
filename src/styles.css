@@ -16,7 +16,7 @@ html, body {
 }
 
 mat-sidenav-container {
-    height: 100vh; /*ocupa toda la ventana*/
+    height: calc(100vh - 64px); /*ocupa toda la ventana*/
 }
 
 mat-sidenav {
