@@ -37,7 +37,8 @@ export class Menu {
     return this.loggin;
   }
 
-  loginLogout(){
+  logout(){
+    console.log('click');
     if(this.authService.isAuthenticated()){
       let username = this.authService.user.username;
       Swal.fire({

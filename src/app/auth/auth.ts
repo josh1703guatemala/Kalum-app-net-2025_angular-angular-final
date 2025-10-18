@@ -22,7 +22,7 @@ export class AuthService {
 
   public get token() : any{
     if(this._token != null){
-      return this.token;
+      return this._token;
     }else if(this._token == null && localStorage.getItem('token') != null){
       this._token = JSON.stringify(localStorage.getItem('token') as string);
       return this._token;

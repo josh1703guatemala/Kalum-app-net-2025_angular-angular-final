@@ -49,7 +49,7 @@ export class Login implements OnInit{
 
             Swal.fire({
               title : "Login",
-              text: `Bienvenido al Sistema ${this.authService.getPayload(response.data.token).username}!`,
+              text: `Bienvenido al Sistema ${payload.Username}!`,
               icon: "success"
             }).then( result => {
               if(result.isConfirmed){
