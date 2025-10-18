@@ -54,4 +54,10 @@ export class Menu {
     }
   }
 
+  roles() {
+    if(this.authService.isAuthenticated()){
+      this.router.navigate(['/roles']);
+    }
+  }
+
 }
