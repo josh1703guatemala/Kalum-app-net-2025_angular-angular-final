@@ -82,5 +82,14 @@ export class AuthService {
     return false;   
   }
 
+  isTokenExpired(): boolean{
+    let now = new Date().getTime() / 1000;  //Obtener tiempo en milisegundos.
+    if(this.getPayload(this.token).exp < now){ //Se hace la comparación.
+       return true;
+    }
+    
+    return false;
+  }
+
 
 }
