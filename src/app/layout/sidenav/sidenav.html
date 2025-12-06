@@ -1,14 +1,34 @@
 <mat-nav-list>
     <mat-list-item>
         <mat-icon>dashboard</mat-icon>
-        <span class="menu-text">Dashboard</span>
+        <span class="menu-text" (click)="dashboard()">Dashboard</span>
     </mat-list-item>
     <mat-list-item>
+
+        <mat-icon>calendar_month</mat-icon>
+          <span class="menu-text" (click)="examenesAdmision()">Examen admisión</span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="authService.hasRole('ROLE_STUDENT')">
+        <mat-icon>credit_card</mat-icon>
+        <span class="menu-text">Cuenta Corriente</span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="authService.hasRole('ROLE_CANDIDATE')">
+        <mat-icon>calendar_month</mat-icon>
+        <span class="menu-text">Resultado Examen</span>
+        </mat-list-item>
+
+
+        <mat-list-item *ngIf="authService.hasRole('ROLE_ADMIN')">
+
         <mat-icon>people</mat-icon>
         <span class="menu-text">usuarios</span>
     </mat-list-item>
-    <mat-list-item>
+
+    <mat-list-item *ngIf="authService.hasRole('ROLE_ADMIN')">
         <mat-icon>security</mat-icon>
-        <span class="menu-text" (click) = "roles()">Roles</span>
+        <span class="menu-text" (click)="roles()">Roles</span>
     </mat-list-item>
+    
 </mat-nav-list>

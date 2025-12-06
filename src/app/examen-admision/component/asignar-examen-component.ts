@@ -1,23 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableModule } from '@angular/material/table';
-import { AuthService } from '../../../auth/auth';
-import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
-
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { ExamenAdmision } from '../model/examen-admision.model';
+import { AsignacionExamen } from '../model/asignacion-examen.model';
+import { CarreraTecnica } from '../../carrera-tecnica/model/carrera-tecnica.model';
 
 @Component({
-  selector: 'app-dashboard',
-  imports: [ CommonModule,
+  selector: 'app-asignar-examen-component',
+  imports: [CommonModule,
     ReactiveFormsModule,
     MatCardModule,
     MatFormFieldModule,
@@ -27,12 +25,12 @@ import Swal from 'sweetalert2';
     MatIconModule,
     MatPaginatorModule,
     MatDialogModule],
-  templateUrl: './dashboard.html',
-  styles: `./dashboard.css`
+  templateUrl: './asignar-examen-component.html',
+  styles: ``
 })
-export class Dashboard {
+export class AsignarExamenComponent implements OnInit{
 
-    carriers: Carrier[] = [
+   carreras: CarreraTecnica[] = [
     {
       carreraId: '1',
       carrera: 'Electronica Industrial',
@@ -63,32 +61,29 @@ export class Dashboard {
     }
   ];
 
-  constructor(private authService: AuthService, private router: Router){
+  asignacionExamen: AsignacionExamen = new AsignacionExamen();
+
+  public asignacionExamenForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder, private dialogRefAsignarExamen: MatDialogRef<AsignarExamenComponent>) {
+    this.asignacionExamenForm = this.formBuilder.group({
+      apellidos: ['', Validators.required],
+      nombres: ['', Validators.required],
+      email: ['', Validators.required],
+      telefono: ['', Validators.required],
+      direccion: ['', Validators.required],
+      carreraId: ['', Validators.required],
+      examenId: ['', Validators.required],
+      jornadaId: ['', Validators.required]
+    });
+  }
+
+  ngOnInit(): void {
 
   }
 
-  asignar() : void {
-    if(this.authService.hasRole('ROLE_ACCOUNT')){
-      Swal.fire({
-        icon: "warning",
-        title: "Asignacion del curso",
-        text: "Vemos que es la primera vez que te asignas un curso, antes debes solicitar un examen de admisión",
-        footer: '<a href="#">Kalum  v.1</a>'
-      }).then(response =>{
-        if(response.isConfirmed){
-          this.router.navigate(['examen']);
-        }
-      });
-      this.router.navigate(['examenes']);
-    }
+  close(): void {
+    this.dialogRefAsignarExamen.close();
   }
 
-}
-
-interface Carrier {
-  carreraId: string;
-  carrera: string;
-  subTitulo: string;
-  descripcion: string;
-  imagen: string;
 }

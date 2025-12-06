@@ -24,7 +24,7 @@ export class Menu {
 
   @Output() toogleSidenav = new EventEmitter<void>();
 
-  constructor( private router: Router, private authService: AuthService){
+  constructor( private router: Router, public authService: AuthService){
 
   }
 
@@ -37,8 +37,8 @@ export class Menu {
     return this.loggin;
   }
 
-  logout(){
-    console.log('click');
+  loginLogout(){
+    console.log('logout');
     if(this.authService.isAuthenticated()){
       let username = this.authService.user.username;
       Swal.fire({
@@ -48,7 +48,7 @@ export class Menu {
       }).then((result) =>{
         if(result.isConfirmed){
           this.authService.logout();
-          this.router.navigate(['/login']);
+          this.router.navigate(['/dashboard']);
         }
       });
     }
@@ -58,6 +58,10 @@ export class Menu {
     if(this.authService.isAuthenticated()){
       this.router.navigate(['/roles']);
     }
+  }
+
+  login() {
+    this.router.navigate(['/login']);    
   }
 
 }

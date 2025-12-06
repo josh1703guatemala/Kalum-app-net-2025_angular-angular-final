@@ -2,9 +2,9 @@
     <h2 class="alinear">Listado de Roles</h2>
     <mat-card-header>
         <div>
-            <mat-form-field hintLabel="Buscar role" appearance="fill">
-                <mat-label>Buscar role</mat-label>
-                 <input matInput #input>
+            <mat-form-field hintLabel="Buscar" appearance="fill">
+                 <mat-label>Buscar por Id</mat-label>
+                <input matInput #input (keydown.enter)="searchRoleById(input.value)">
             </mat-form-field>
         </div>
     </mat-card-header>
@@ -12,10 +12,51 @@
         <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
             <ul fxLayout="row" fxLayoutGap="20px">
                 <li>
-                    <button mat-raised-button color="primary">Agregar role</button>
+                    <button mat-raised-button color="primary" (click)="openFormDialog()">Agregar role</button>
                 </li>
             </ul>
         </div>
     </mat-card-header>
+
+    <mat-card-content>
+        <table mat-table class="mat-cell" [dataSource]="dataSource">
+            <ng-container matColumnDef="number">
+                <th class="text-center-column" mat-header-cell *matHeaderCellDef >Number</th>
+                <td class="text-center-column" mat-cell *matCellDef="let element">
+                    <ng-container *ngIf="element" >
+                        {{element.number}}
+                    </ng-container>
+                </td>                
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <th class="text-center-column" mat-header-cell *matHeaderCellDef>ROLE</th>
+                <td class="text-center-column" mat-cell *matCellDef="let element">
+                    <ng-container *ngIf="element">
+                        {{element.name}}
+                    </ng-container>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="acciones">
+                <th class="text-center-column"  mat-header-cell *matHeaderCellDef>Acciones</th>
+                <td class="text-center-column"  mat-cell *matCellDef="let element; let i=index">
+                    <button mat-icon-button color="accent" (click)="editRole(element.id, element.name)">
+                        <mat-icon aria-label="Edit">
+                            edit
+                        </mat-icon>
+                    </button>
+                    <button mat-icon-button color="accent" (click)="deleteRole(element.id)">
+                        <mat-icon aria-label="Delete">
+                            delete
+                        </mat-icon>
+                    </button>
+                </td>                
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons="">
+
+        </mat-paginator>
+    </mat-card-content>
 
 </mat-card>

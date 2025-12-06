@@ -16,6 +16,9 @@ export const routes: Routes = [
             },
             {
                 path: 'dashboard', loadComponent: () => import('./pages/dashboard/dashboard').then((c) => c.Dashboard)
+            },
+            {
+                path: 'examenes', loadComponent: () => import('./examen-admision/component/examen-admision-component').then((c) => c.ExamenAdmisionComponent)
             }
         ]
     },
@@ -24,7 +27,7 @@ export const routes: Routes = [
 
     },
     {
-        path: '**', redirectTo: ''
+        path: '**', redirectTo: 'dashboard'
     }
 
 ];

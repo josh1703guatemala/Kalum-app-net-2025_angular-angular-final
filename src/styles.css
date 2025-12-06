@@ -80,6 +80,10 @@ mat-list-item .menu-text {
     text-align: center;
 }
 
+.text-center-column{
+    text-align: center !important;
+}
+
 .mat-form-field{
     width: 140%;
 }
@@ -87,3 +91,31 @@ mat-list-item .menu-text {
 mat-form-field {
   width: 140%;
 }
+
+.mat-cell:nth-child(1),
+mat-header-cell:nth-child(1) {
+  flex: 0 0 6%;
+}
+
+.form-input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-input-container>* {
+  width: 100%;
+}
+
+.text-color-kalum {
+    color: white;
+}
+
+.profile-card {
+  text-align: center;
+  padding: 0 20px 20px 20px;
+}
+
+.header-profile-card {
+  margin-top: 20px;
+}
+
